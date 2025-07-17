@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en"> <!-- HTML5 document declaration and language set to English -->
+<head>
+  <meta charset="utf-8" /> <!-- Character encoding set -->
+  <title>Office Computers & Equipment Diagnostic Form</title> <!-- Page title -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Responsive scaling on mobile -->
+
+  <style>
+    :root { // CSS custom variables
+      --gap: 0.75rem; // Gap between elements
+      --gap-lg: 1.25rem; // Larger gap
+      --col-label: 160px; // Not used in final layout, but could define label width
+      --border-color: #cbd5e1; // Border color
+      --accent: #2563eb; // Main theme color
+      --danger: #dc2626; // Red color for required fields
+      --radius: 6px; // Rounded corners
+      --bg: #f8fafc; // Background color
+    }
+
+    body {
+      font-family: system-ui, sans-serif; // Use system font
+      margin: 0;
+      padding: var(--gap-lg); // Padding around entire body
+      background: var(--bg); // Light gray background
+      color: #0f172a; // Dark text
+      line-height: 1.35;
+    }
+
+    h1 {
+      font-size: 1.5rem; // Main heading size
+      margin-bottom: var(--gap-lg);
+    }
+
+    fieldset {
+      border: 1px solid var(--border-color); // Border around each section
+      border-radius: var(--radius); // Rounded corners
+      margin-bottom: var(--gap-lg); // Space between fieldsets
+      padding: var(--gap-lg);
+      background: #fff; // White background inside boxes
+    }
+
+    legend {
+      font-weight: 600; // Bold title for fieldset
+      padding: 0 0.5rem;
+    }
+
+    label {
+      display: block; // Ensure label appears above input
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+    }
+
+    .req::after {
+      content: " *"; // Add red asterisk after labels with class "req"
+      color: var(--danger);
+    }
+
+    input, select, textarea {
+      width: 100%; // Full width of container
+      padding: 0.5rem; // Inner spacing
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      font-size: 1rem;
+    }
+
+    textarea {
+      min-height: 100px; // Minimum height for text area
+      resize: vertical; // Allow user to resize vertically
+    }
+
+    .grid-two {
+      display: grid; // Grid layout for two-column layout
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap) var(--gap-lg);
+    }
+
+    .grid-three {
+      display: grid; // Flexible grid for checklist items
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: var(--gap) var(--gap-lg);
+    }
+
+    .checkboxes label {
+      display: flex; // Make checkbox and text align nicely
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: normal;
+    }
+
+    .submit-btn {
+      background: var(--accent); // Blue background
+      color: #fff; // White text
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      margin-top: var(--gap);
+    }
+
+    .submit-btn:hover {
+      background: #1e40af; // Darker blue on hover
+    }
+  </style>
+</head>
+<body>
+  <h1>Office Computers & Equipment Diagnostic Form</h1> <!-- Main title -->
+
+  <form> <!-- Start of form -->
+
+    <!-- 1. Staff and Device Information -->
+    <fieldset>
+      <legend>1. Staff & Device Information</legend> <!-- Section title -->
+      <div class="grid-two"> <!-- Two-column grid -->
+        <div>
+          <label class="req">Name</label> <!-- Required field -->
+          <input type="text" name="name" required> <!-- Text input -->
+        </div>
+        <div>
+          <label class="req">Department</label>
+          <select name="department" required> <!-- Dropdown -->
+            <option value="">-- Select Department --</option>
+            <option>Administration</option>
+            <option>ICT</option>
+            <option>Finance</option>
+            <option>HR</option>
+            <option>Academic</option>
+            <option>Procurement</option>
+            <option>Others</option>
+          </select>
+        </div>
+        <div>
+          <label class="req">Email / Phone No.</label>
+          <input type="text" name="contact" required>
+        </div>
+        <div>
+          <label class="req">Device Name</label>
+          <input type="text" name="device_name" required>
+        </div>
+        <div>
+          <label class="req">Model</label>
+          <input type="text" name="model" required>
+        </div>
+        <div>
+          <label class="req">Serial Number</label>
+          <input type="text" name="serial" required>
+        </div>
+        <div>
+          <label class="req">Date</label>
+          <input type="date" name="date" required>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- 2. Problem Areas Checklist -->
+    <fieldset>
+      <legend>2. Problem Areas</legend>
+      <div class="grid-three checkboxes"> <!-- Flexible grid -->
+        <label><input type="checkbox" name="problem[]" value="Power issue">Power issue</label>
+        <label><input type="checkbox" name="problem[]" value="Display issue">Display issue</label>
+        <label><input type="checkbox" name="problem[]" value="Keyboard/Mouse issue">Keyboard/Mouse issue</label>
+        <label><input type="checkbox" name="problem[]" value="Internet/Network issue">Internet/Network issue</label>
+        <label><input type="checkbox" name="problem[]" value="Printer not working">Printer not working</label>
+        <label><input type="checkbox" name="problem[]" value="Slow performance">Slow performance</label>
+        <label><input type="checkbox" name="problem[]" value="Software error">Software error</label>
+        <label><input type="checkbox" name="problem[]" value="No Sound">No Sound</label>
+        <label><input type="checkbox" name="problem[]" value="System won't start">System won't start</label>
+        <label><input type="checkbox" name="problem[]" value="Others">Others</label>
+      </div>
+    </fieldset>
+
+    <!-- 3. Description of the issue -->
+    <fieldset>
+      <legend>3. Brief Description of the Issue</legend>
+      <label class="req">Description</label>
+      <textarea name="description" required placeholder="Please describe the issue in detail..."></textarea>
+    </fieldset>
+
+    <button type="submit" class="submit-btn">Submit</button> <!-- Submit button -->
+  </form>
+</body>
+</html>
